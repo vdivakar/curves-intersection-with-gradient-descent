@@ -1,10 +1,5 @@
+from sympy import Symbol, Matrix, lambdify
 import numpy as np
-from numpy import linalg
-from sympy import *
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-from math import sin, sqrt
 
 def F1(x1, x2, x3):
     x = np.array([x1, x2, x3])

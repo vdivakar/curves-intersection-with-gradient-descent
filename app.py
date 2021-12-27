@@ -1,14 +1,11 @@
-from matplotlib import widgets
 import streamlit as st
 import numpy as np
-import matplotlib.pyplot as plt
-
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import numpy as np
-import plotly.express as px
 
 from utils import *
+
+st.set_page_config(layout="wide")
 
 col1,col2 = st.columns(2)
 
