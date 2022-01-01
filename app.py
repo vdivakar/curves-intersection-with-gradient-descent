@@ -14,7 +14,7 @@ with col2:
     func2 = st.radio("Function-2", ('DoubleCone2', 'Sphere2', 'Cylinder2'))
     func2 = str(func2)
 with col3:
-    N = st.slider('Number of points to plot. More the slower', 200, 3000, 500, step=100)
+    N = st.slider('Number of points to plot. More the slower', 200, 2000, 500, step=100)
 with col4:
     st.write(F1_curve(X, func1))
     st.write(F2_curve(X, func2))
