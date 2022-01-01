@@ -1,5 +1,6 @@
 from sympy import Symbol, Matrix, lambdify
 import numpy as np
+from sympy.tensor.array import derive_by_array
 
 def F1(x1, x2, x3, f1_type):
     x = np.array([x1, x2, x3])
@@ -13,7 +14,6 @@ def F1(x1, x2, x3, f1_type):
         x_a = x-a
         x_a = np.sum((x_a)**2)
         return x_a - R**2
-
 
 def F2(x1, x2, x3, f2_type):
     x = np.array([x1, x2, x3])
@@ -45,20 +45,27 @@ X = Matrix([x1, x2, x3])
 
 def generate_F1_sample(N, f1_type):
     y_F1 = F1_curve(X, f1_type)
-    y_F1_prime1 = y_F1.diff(x1)
-    y_F1_prime2 = y_F1.diff(x2)
-    y_F1_prime3 = y_F1.diff(x3)
-    y_F1_prime_mat = Matrix([y_F1_prime1,y_F1_prime2,y_F1_prime3])
+
+    first_derivative = derive_by_array(y_F1, (x1, x2, x3))
+    hessian = derive_by_array(first_derivative, (x1, x2, x3))
+
+    numerator = Matrix(first_derivative).dot(first_derivative)
+    denominator = Matrix(first_derivative).T * Matrix(hessian) * Matrix(first_derivative)
+    call_numerator = lambdify((x1,x2,x3), numerator, 'numpy')
+    call_denominator = lambdify((x1,x2,x3), denominator, 'numpy')
+
+    y_F1_prime_mat = Matrix(first_derivative)
+
     call_y_F1_prime_mat = lambdify((x1,x2,x3), y_F1_prime_mat, 'numpy')
     call_y_F1 = lambdify((x1, x2,x3, f1_type), y_F1, 'numpy')
 
-    lr = 0.01
     samples = []
     for i in range(N):
         x = np.random.uniform(-2, 2, 3)
         G_value = call_y_F1(x[0], x[1], x[2], f1_type)
         while(G_value > 1.0e-7):
             grad = call_y_F1_prime_mat(x[0], x[1], x[2])
+            lr = call_numerator(x[0], x[1], x[2]) / call_denominator(x[0], x[1], x[2])
             x = x - (lr*grad).reshape((3,))
             G_value = call_y_F1(x[0], x[1], x[2],f1_type) 
         samples.append(x)   
@@ -67,20 +74,27 @@ def generate_F1_sample(N, f1_type):
 
 def generate_F2_sample(N, f2_type):
     y_F2 = F2_curve(X,f2_type)
-    y_F2_prime1 = y_F2.diff(x1)
-    y_F2_prime2 = y_F2.diff(x2)
-    y_F2_prime3 = y_F2.diff(x3)
-    y_F2_prime_mat = Matrix([y_F2_prime1,y_F2_prime2,y_F2_prime3])
+
+    first_derivative = derive_by_array(y_F2, (x1, x2, x3))
+    hessian = derive_by_array(first_derivative, (x1, x2, x3))
+
+    numerator = Matrix(first_derivative).dot(first_derivative)
+    denominator = Matrix(first_derivative).T * Matrix(hessian) * Matrix(first_derivative)
+    call_numerator = lambdify((x1,x2,x3), numerator, 'numpy')
+    call_denominator = lambdify((x1,x2,x3), denominator, 'numpy')
+
+    y_F2_prime_mat = Matrix(first_derivative)
+
     call_y_F2_prime_mat = lambdify((x1, x2,x3), y_F2_prime_mat, 'numpy')
     call_y_F2 = lambdify((x1, x2,x3,f2_type), y_F2, 'numpy')
 
-    lr = 0.01
     samples = []
     for i in range(N):
         x = np.random.uniform(-2, 2, 3)
         G_value = call_y_F2(x[0], x[1], x[2],f2_type)
         while(G_value > 1.0e-7):
             grad = call_y_F2_prime_mat(x[0], x[1], x[2])
+            lr = call_numerator(x[0], x[1], x[2]) / call_denominator(x[0], x[1], x[2])
             x = x - (lr*grad).reshape((3,))
             G_value = call_y_F2(x[0], x[1], x[2],f2_type)    
         samples.append(x)
@@ -92,20 +106,28 @@ def generate_intersection_sample(N, f1_type, f2_type):
 
     y = G(X,f1_type, f2_type)
 
-    yprime1 = y.diff(x1)
-    yprime2 = y.diff(x2)
-    yprime3 = y.diff(x3)
-    yprime_mat = Matrix([yprime1,yprime2,yprime3])
+    first_derivative = derive_by_array(y, (x1, x2, x3))
+    hessian = derive_by_array(first_derivative, (x1, x2, x3))
+
+    numerator = Matrix(first_derivative).dot(first_derivative)
+    denominator = Matrix(first_derivative).T * Matrix(hessian) * Matrix(first_derivative)
+    call_numerator = lambdify((x1,x2,x3), numerator, 'numpy')
+    call_denominator = lambdify((x1,x2,x3), denominator, 'numpy')
+
+    yprime_mat = Matrix(first_derivative)
+
     call_yprime_mat = lambdify((x1, x2,x3), yprime_mat, 'numpy')
     call_y = lambdify((x1, x2,x3,f1_type, f2_type), y, 'numpy')
 
-    lr = 0.01
     samples = []
     for i in range(N):
         x = np.random.uniform(-2, 2, 3)
         G_value = call_y(x[0], x[1], x[2],f1_type, f2_type)
         while(G_value > 1.0e-7):
             grad = call_yprime_mat(x[0], x[1], x[2])
+            # lr = call_numerator(x[0], x[1], x[2]) / call_denominator(x[0], x[1], x[2])
+            # print(lr)
+            lr = 0.02
             x = x - (lr*grad).reshape((3,))
             G_value = call_y(x[0], x[1], x[2], f1_type, f2_type)  
         samples.append(x)  
