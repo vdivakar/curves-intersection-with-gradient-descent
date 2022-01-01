@@ -13,7 +13,6 @@ def F1(x1, x2, x3, f1_type):
         x_a = x-a
         x_a = np.sum((x_a)**2)
         return x_a - R**2
-    # return x3**2 - x1**2 - x2**2
 
 
 def F2(x1, x2, x3, f2_type):
@@ -29,8 +28,6 @@ def F2(x1, x2, x3, f2_type):
         x_a = x-a
         x_a = np.sum((x_a)**2)
         return x_a - R**2
-    
-    # return 1 - x3**2 - x2**2
 
 def F1_curve(l1, f1_type):
     return (F1(l1[0],l1[1],l1[2], f1_type))**2

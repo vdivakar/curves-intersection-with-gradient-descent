@@ -22,19 +22,13 @@ with col4:
 
 col1,col2 = st.columns(2)
 
-
-# N = 5000
 data1 = generate_F1_sample(N, func1)
 data2 = generate_F2_sample(N, func2)
 
 x, y, z = data1[:, 0], data1[:, 1], data1[:, 2]
-trace1 = go.Scatter3d(x=x, y=y, z=z,mode='markers', name="F1", marker=dict(
-            # color=px.colors.qualitative.D3,
-            size=5,sizemode='diameter'))
+trace1 = go.Scatter3d(x=x, y=y, z=z,mode='markers', name="F1", marker=dict(size=5,sizemode='diameter'))
 x, y, z = data2[:, 0], data2[:, 1], data2[:, 2]
-trace2 = go.Scatter3d(x=x, y=y, z=z,mode='markers', name="F2", marker=dict(
-            # color=px.colors.qualitative.D3,
-            size=5,sizemode='diameter'))
+trace2 = go.Scatter3d(x=x, y=y, z=z,mode='markers', name="F2", marker=dict(size=5,sizemode='diameter'))
 
 fig = make_subplots()
 fig.add_trace(trace1)
