@@ -2,6 +2,11 @@ from sympy import Symbol, Matrix, lambdify
 import numpy as np
 from sympy.tensor.array import derive_by_array
 
+x1 = Symbol('x')
+x2 = Symbol('y')
+x3 = Symbol('z')
+X = Matrix([x1, x2, x3])
+
 def F1(x1, x2, x3, f1_type):
     x = np.array([x1, x2, x3])
     if f1_type == "DoubleCone1":
@@ -17,7 +22,6 @@ def F1(x1, x2, x3, f1_type):
 
 def F2(x1, x2, x3, f2_type):
     x = np.array([x1, x2, x3])
-
     if f2_type == "DoubleCone2":
         return (x2-0.90)**2 - x1**2 - x3**2
     elif f2_type == "Cylinder2":
@@ -37,11 +41,6 @@ def F2_curve(l1, f2_type):
 
 def G(l1, f1_type, f2_type):
     return (F1(l1[0],l1[1],l1[2],f1_type))**2 + (F2(l1[0],l1[1],l1[2],f2_type))**2
-
-x1 = Symbol('x')
-x2 = Symbol('y')
-x3 = Symbol('z')
-X = Matrix([x1, x2, x3])
 
 def generate_F1_sample(N, f1_type):
     y_F1 = F1_curve(X, f1_type)
@@ -99,8 +98,6 @@ def generate_F2_sample(N, f2_type):
             G_value = call_y_F2(x[0], x[1], x[2],f2_type)    
         samples.append(x)
     return np.array(samples)
-
-
 
 def generate_intersection_sample(N, f1_type, f2_type):
 
