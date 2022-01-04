@@ -79,6 +79,15 @@ This function can now be minimised to get the points of intersection of the curv
 2. The minimum value of G(x) is zero.
 3. The minimum value of G(x) represents the interesection of all F_i(x)
 
+```
+ Generate a random point x
+ While G(x) != 0:
+    x = x - lr * gradient(G(x))
+    
+ Repeat for N points.
+```
+
+
 
 <br>
 <br>
