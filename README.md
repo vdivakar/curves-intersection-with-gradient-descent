@@ -2,6 +2,11 @@
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/vdivakar/curves-intersection-with-gradient-descent/main/app.py)
 
+<img src="https://github.com/vdivakar/curves-intersection-with-gradient-descent/blob/main/images/2cylinders.png" width=200 align=left>
+<img src="https://github.com/vdivakar/curves-intersection-with-gradient-descent/blob/main/images/2doubleCones.png" width=200 align=left>
+<img src="https://github.com/vdivakar/curves-intersection-with-gradient-descent/blob/main/images/doubleCone_cylinder.png" width=200>
+
+
 This app is a result of finding a new application of gradient descent. I am a fan of plotting graphs and visualizations in general.
 Hence, I was quite fascinated on discovering that we can plot graphs and their intersection using the concep of gradient descent.
 
@@ -75,14 +80,15 @@ This function can now be minimised to get the points of intersection of the curv
 3. The minimum value of G(x) represents the interesection of all F_i(x)
 
 
-
-
 <br>
 <br>
 
 Assumptions:
 1. Curves do intersect somewhere.
 2. The individual curves are themselves differentiable.
+
+
+
 
 
 
