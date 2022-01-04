@@ -1,6 +1,6 @@
 # Plotting intersection of curves using gradient descent
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/vdivakar/curves-intersection-with-gradient-descent/main/app.py)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/vdivakar/curves-intersection-with-gradient-descent/main/app.py#plotting-intersection-of-curves-using-gradient-descent)
 
 <img src="https://github.com/vdivakar/curves-intersection-with-gradient-descent/blob/main/images/2cylinders.png" width=200 align=left>
 <img src="https://github.com/vdivakar/curves-intersection-with-gradient-descent/blob/main/images/2doubleCones.png" width=200 align=left>
