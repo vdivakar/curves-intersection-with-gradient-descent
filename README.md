@@ -7,8 +7,11 @@
 <img src="https://github.com/vdivakar/curves-intersection-with-gradient-descent/blob/main/images/doubleCone_cylinder.png" width=200>
 
 
-This app is a result of finding a new application of gradient descent. I am a fan of plotting graphs and visualizations in general.
-Hence, I was quite fascinated on discovering that we can plot graphs and their intersection using the concep of gradient descent.
+| What's the app about                      | Why this app |
+| -----------                               | ----------- |
+| Plotting graphs and their intersection.   | An interesting new application of gradient descent. |
+|                                           | I'm a fan of plotting graphs (and visualizations in general). |
+
 
 Let's say you are giving equations of curves and you need to plot the intersection of these curves. As an example, say you have 2 spheres (3D), how would you plot the intersection of the given spheres? 
 
@@ -19,7 +22,7 @@ Let's say you are giving equations of curves and you need to plot the intersecti
 
 
 My first approach to this problem was finding the equation of intersection of these 2 functions by equating them i.e. F_1(x) = F_2(x).
-Then trying to simply the equation and use that equation to plot the points. 
+Then trying to simplify the equation and use that equation to plot the points. 
 This approach is not feasible for 2 reasons:
 1. Equating the 2 functions won't necessarily give you the equation of intersection. For instance, equating 2 equations of spheres will
 give you intersection **plane** of the spheres and not the equation of intersecting circle (if any).
@@ -58,17 +61,16 @@ So, we can say that a point will be valid when it satisfies G(x) = 0, since it w
 This will be our criterion for checking if the point is a valid solution.
 
 However, we are not yet done. The range of G(x) can be from ![](https://latex.codecogs.com/svg.latex?(-\infty,\infty)). This means,
-the minimum value of G(x) is not necessarily 0. This is a problem because if we try to minimize G(x) with gradient descent, it's highly
-possible that it might attain some negative value as the minima.
+the minimum value of G(x) is not necessarily 0. This is a problem because if we keep minimizing G(x) iteratively by updating x, the value of G(x) will cross 0 and approach a negative value (it's minima).  
 
-So, we need to do slight modification in G(x) such that its minimum value is 0.
+This could be solved if the minima of G(x) is 0 itself. This way we can keep updating x until G(x) approaches the minima (0 in this case). So, we need to do slight modification in G(x) such that its minimum value is 0.
 
 My first instict was to define G(x) as the sum of absolute F_i(x) i.e.
 
 ![](https://latex.codecogs.com/svg.latex?G(x)=|F_1(x)|+|F_2(x)|)
 
 The minimum value of this function will be 0 and will hold all the conditions discussed above.
-However, if are trying to use Gradient Descent, using modulus operation can be problematic because the function may not remain smooth anymore.
+However, if we are trying to use Gradient Descent, using modulus operation can be problematic because the function may not remain smooth anymore.
 
 So, what's an easy alternative for modulus operator which also holds the smoothness property? - Use squares!
 
