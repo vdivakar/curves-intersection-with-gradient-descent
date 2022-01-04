@@ -1,5 +1,6 @@
 # Plotting intersection of curves using gradient descent
 
+*Webapp Link :*
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/vdivakar/curves-intersection-with-gradient-descent/main/app.py#plotting-intersection-of-curves-using-gradient-descent)
 
 <img src="https://github.com/vdivakar/curves-intersection-with-gradient-descent/blob/main/images/2cylinders.png" width=200 align=left>
@@ -7,10 +8,10 @@
 <img src="https://github.com/vdivakar/curves-intersection-with-gradient-descent/blob/main/images/doubleCone_cylinder.png" width=200>
 
 
-| What's the app about                      | Why this app |
-| -----------                               | ----------- |
-| Plotting graphs and their intersection.   | An interesting new application of gradient descent. |
-|                                           | I'm a fan of plotting graphs (and visualizations in general). |
+| What's the app about                        | Why this app |
+| -----------                                 | ----------- |
+| Plotting functions and their intersection.  | An interesting application of gradient descent. |
+|                                             | I'm a fan of plotting graphs (and visualizations in general). |
 
 
 Let's say you are giving equations of curves and you need to plot the intersection of these curves. As an example, say you have 2 spheres (3D), how would you plot the intersection of the given spheres? 
