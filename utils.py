@@ -133,7 +133,7 @@ def generate_intersection_sample(N, f1_type, f2_type):
     call_y = lambdify((x1, x2,x3,f1_type, f2_type), y, 'numpy')
 
     samples = []
-    for i in range(N):
+    for _ in range(N):
         x = np.random.uniform(-2, 2, 3)
         G_value = call_y(x[0], x[1], x[2],f1_type, f2_type)
         while(G_value > 1.0e-7):

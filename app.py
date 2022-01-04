@@ -29,6 +29,7 @@ with col4:
     st.write(F1_curve(X, func1))
     st.write(F2_curve(X, func2))
 
+
 # Next row of app will have 2 columns
 #   column-1 : Plot for input functions
 #   column-2 : Plot for intersection of the functions
@@ -62,4 +63,8 @@ with col2:
     st.plotly_chart(fig, use_container_width=True, height=600, width=800)
 
 
+readmeLink="#### [Mathematical details and approach](https://github.com/vdivakar/curves-intersection-with-gradient-descent/blob/main/README.md)"
+st.markdown(readmeLink, unsafe_allow_html=True)
 
+repoLink="#### [Github Repository](https://github.com/vdivakar/curves-intersection-with-gradient-descent)"
+st.markdown(repoLink, unsafe_allow_html=True)
