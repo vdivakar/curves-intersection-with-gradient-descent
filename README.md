@@ -1,5 +1,7 @@
 # Plotting intersection of curves using gradient descent
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/vdivakar/curves-intersection-with-gradient-descent/main/app.py)
+
 This app is a result of finding a new application of gradient descent. I am a fan of plotting graphs and visualizations in general.
 Hence, I was quite fascinated on discovering that we can plot graphs and their intersection using the concep of gradient descent.
 
