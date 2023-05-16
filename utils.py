@@ -59,6 +59,10 @@ def generate_F1_sample(N, f1_type):
     first_derivative = derive_by_array(y_F1, (x1, x2, x3))
     hessian = derive_by_array(first_derivative, (x1, x2, x3))
 
+    #print(len(list(Matrix(hessian).eigenvals().keys())))
+    #for x in list(Matrix(hessian).eigenvals().keys()):
+    #    print(x)
+
     numerator = Matrix(first_derivative).dot(first_derivative)
     denominator = Matrix(first_derivative).T * Matrix(hessian) * Matrix(first_derivative)
     call_numerator = lambdify((x1,x2,x3), numerator, 'numpy')
@@ -121,6 +125,12 @@ def generate_intersection_sample(N, f1_type, f2_type):
 
     first_derivative = derive_by_array(y, (x1, x2, x3))
     hessian = derive_by_array(first_derivative, (x1, x2, x3))
+
+    # print(list(Matrix(hessian).eigenvals().keys()))
+    # print("\n")
+    # print(len(list(Matrix(hessian).eigenvals().keys())))
+    # for x in list(Matrix(hessian).eigenvals().keys()):
+    #     print(x)
 
     numerator = Matrix(first_derivative).dot(first_derivative)
     denominator = Matrix(first_derivative).T * Matrix(hessian) * Matrix(first_derivative)
